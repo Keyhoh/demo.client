@@ -1,5 +1,5 @@
-import Layout from '../components/Layout'
 import {Link} from '@material-ui/core';
+import {Layout} from '../components/templates/Layout';
 
 const IndexPage = () => (
   <Layout title='Home | Next.js + TypeScript Example'>
