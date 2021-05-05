@@ -1,5 +1,5 @@
 import {NextPage, NextPageContext} from 'next';
-import {Workspace} from '../../../schemas';
+import {Task, Workspace} from '../../../schemas';
 import {WorkspacePage} from '../../../components/pages/Workspace';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 }
 
 const Page: NextPage<Props> = ({workspace}: Props) => {
-  return <WorkspacePage workspace={workspace}/>
+  return <WorkspacePage workspace={workspace} href={(task: Task) => `/workspaces/${workspace.id}/${task.id}`}/>
 }
 
 Page.getInitialProps = async (context: NextPageContext) => {

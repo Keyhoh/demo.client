@@ -14,14 +14,15 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 type Props = {
+  href: (task: Task) => string
   workspace: Workspace
 }
 
-export const WorkspacePage: FC<Props> = ({workspace}: Props) => {
+export const WorkspacePage: FC<Props> = ({href, workspace}: Props) => {
   const classes = useStyles()
   return <Layout title={workspace.name}>
     <Box className={classes.box}>id: {workspace.id}</Box>
     <Box className={classes.box}>name: {workspace.name}</Box>
-    <TaskBoard href={(task: Task) => `/workspaces/${workspace.id}/tasks/${task.id}`} tasks={workspace.tasks}/>
+    <TaskBoard href={href} tasks={workspace.tasks}/>
   </Layout>
 }
