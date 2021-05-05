@@ -1,17 +1,12 @@
 import {NextPage, NextPageContext} from 'next';
-import {List, ListItem} from '@material-ui/core';
 import 'whatwg-fetch'
+import {Workspaces} from '../../components/pages/Workspaces';
 
 type Props = {
   workspaces: any[]
 }
 
-const Page: NextPage<Props> = (props: Props) => {
-  const items = props.workspaces.map(workspace => <ListItem>{workspace.id}</ListItem>)
-  return <List>
-    {items}
-  </List>
-}
+const Page: NextPage<Props> = (props: Props) => <Workspaces {...props}/>
 
 Page.getInitialProps = async (_: NextPageContext) => {
   const workspaces: any[] = await fetch(`${process.env.SERVER_HOST}/workspaces`)
