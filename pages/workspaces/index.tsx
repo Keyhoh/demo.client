@@ -1,13 +1,13 @@
 import {NextPage, NextPageContext} from 'next';
 import 'whatwg-fetch'
-import {Workspaces} from '../../components/pages/Workspaces';
+import {WorkspacesPage} from '../../components/pages/WorkspacesPage';
 import {Workspace} from '../../schemas';
 
 type Props = {
   workspaces: Workspace[]
 }
 
-const Page: NextPage<Props> = (props: Props) => <Workspaces {...props}/>
+const Page: NextPage<Props> = (props: Props) => <WorkspacesPage {...props}/>
 
 Page.getInitialProps = async (_: NextPageContext) => {
   const workspaces: Workspace[] = await fetch(`${process.env.SERVER_HOST}/workspaces`)

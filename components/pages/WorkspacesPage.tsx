@@ -7,7 +7,7 @@ type Props = {
   workspaces: Workspace[]
 }
 
-export const Workspaces: FC<Props> = (props: Props) => {
+export const WorkspacesPage: FC<Props> = (props: Props) => {
   const workspaces = props.workspaces.map(workspace =>
     <Grid key={workspace.id} lg={12} md={12} sm={12} xs={12} item>
       <Link href={`/workspaces/${workspace.id}`}><Paper>{workspace.name || 'unnamed'}</Paper></Link>
