@@ -1,10 +1,10 @@
 import {NextPage, NextPageContext} from 'next';
-import {Box, createStyles, Grid, makeStyles} from '@material-ui/core';
+import {Box, createStyles, makeStyles} from '@material-ui/core';
 import {Layout} from '../../../components/templates/Layout';
 import {useRouter} from 'next/router';
 import {Theme} from '@material-ui/core/styles';
 import {Task, Workspace} from '../../../schemas';
-import {TaskPaper} from '../../../components/molecules/TaskPaper';
+import {TaskBoard} from '../../../components/organisms/TaskBoard';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,13 +21,10 @@ type Props = {
 const Page: NextPage<Props> = ({workspace}: Props) => {
   const {workspaceId} = useRouter().query
   const classes = useStyles()
-  const tasks = workspace.tasks.map(
-    (task: Task) => <TaskPaper href={`/workspace/${workspaceId}/tasks/${task.id}`} task={task}/>
-  )
   return <Layout title={workspace.name}>
     <Box className={classes.box}>id: {workspace.id}</Box>
     <Box className={classes.box}>name: {workspace.name}</Box>
-    <Grid container spacing={2}>{tasks}</Grid>
+    <TaskBoard href={(task: Task) => `/workspaces/${workspaceId}/tasks/${task.id}`} tasks={workspace.tasks}/>
   </Layout>
 }
 
