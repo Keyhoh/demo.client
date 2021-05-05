@@ -27,7 +27,7 @@ const TaskSchema: Schema = {
 export const TaskValidate: ValidateFunction<Task> = ajv.compile<Task>(TaskSchema)
 
 
-export interface Schemas {
+export interface Workspace {
   id: string
   name: string
   tasks: Task[]
@@ -49,4 +49,4 @@ export const WorkspaceSchema: Schema = {
   }
 }
 
-export const WorkspaceValidate: ValidateFunction<Schemas> = ajv.compile<Schemas>(WorkspaceSchema)
+export const WorkspaceValidate: ValidateFunction<Workspace> = ajv.compile<Workspace>(WorkspaceSchema)
