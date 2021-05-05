@@ -1,10 +1,22 @@
-import {NextPage} from 'next';
-import {useRouter} from 'next/router';
+import {NextPage, NextPageContext} from 'next';
 import {Box} from '@material-ui/core';
+import {Layout} from '../../../components/templates/Layout';
 
-const Page: NextPage = () => {
-  const {workspaceId} = useRouter().query
-  return <Box>{workspaceId}</Box>
+type Props = {
+  workspace: any
+}
+
+const Page: NextPage<Props> = ({workspace}: Props) => {
+  return <Layout title={workspace.name}><Box>id: {workspace.id}</Box><Box>name: {workspace.name}</Box></Layout>
+}
+
+Page.getInitialProps = async (context: NextPageContext) => {
+  const {workspaceId} = context.query
+  const workspace: any = await fetch(`${process.env.SERVER_HOST}/workspaces/${workspaceId}`)
+    .then(response => response.json())
+  return {
+    workspace: workspace
+  }
 }
 
 export default Page
