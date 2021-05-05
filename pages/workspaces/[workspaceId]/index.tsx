@@ -1,6 +1,6 @@
 import {NextPage, NextPageContext} from 'next';
 import {Task, Workspace} from '../../../schemas';
-import {WorkspacePage} from '../../../components/pages/Workspace';
+import {WorkspacePage} from '../../../components/pages/WorkspacePage';
 
 type Props = {
   workspace: Workspace
