@@ -1,11 +1,21 @@
-import {Link} from '@material-ui/core';
-import {Layout} from '../components/templates/Layout';
+import {NextPage, NextPageContext} from 'next';
+import 'whatwg-fetch'
+import {IndexPage} from '../components/pages/IndexPage';
+import {Workspace} from '../schemas';
 
-const IndexPage = () => (
-  <Layout title='Home | Next.js + TypeScript Example'>
-    <h1>Hello Next.js 👋</h1>
-    <Link href='/workspaces'>workspaces</Link>
-  </Layout>
-)
+type Props = {
+  workspaces: Workspace[]
+}
 
-export default IndexPage
+const Page: NextPage<Props> = (props: Props) =>
+  <IndexPage {...props} href={(workspace: Workspace) => `/${workspace.id}`}/>
+
+Page.getInitialProps = async (_: NextPageContext) => {
+  const workspaces: Workspace[] = await fetch(`${process.env.SERVER_HOST}/workspaces`)
+    .then(response => response.json())
+  return {
+    workspaces: workspaces
+  }
+}
+
+export default Page
